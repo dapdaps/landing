@@ -3,6 +3,8 @@ import { memo } from "react";
 import styled from "styled-components";
 
 import { StyledFlex, StyledFont } from "@/styled/styles";
+import { openAppLink } from "@/utils/links";
+import { type NavigationType } from "../../types";
 const StyledFooterContainer = styled.div`
   padding: 0 20px 30px;
 `
@@ -36,6 +38,9 @@ const StyledFooterR = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 140px;
+  .weight:hover {
+    font-weight: 600;
+  }
 `
 const StyledLogoImage = styled.img`
   margin-bottom: 107px;
@@ -50,9 +55,13 @@ const StyledSocialButton = styled.div`
   border-radius: 12px;
   background: #5B56F3;
   cursor: pointer;
+  transition: all 0.5s;
+  &:hover {
+    transform: scale(110%);
+  }
 `
 
-const ABOUT_LIST = [{
+const ABOUT_LIST: NavigationType[] = [{
   label: "Documentation",
   path: "https://docs.dapdap.net",
   target: "_blank"
@@ -65,30 +74,30 @@ const ABOUT_LIST = [{
   path: "https://docs.dapdap.net/user-support/general-faq",
   target: "_blank"
 },]
-const PRODUCT_LIST = [{
+const PRODUCT_LIST: NavigationType[] = [{
   label: "Super Bridge",
-  path: "https://app.dapdap.net/super-bridge",
-  target: "_self"
+  path: "/super-bridge",
+  target: "_blank"
 }, {
   label: "Super Swap",
-  path: "https://app.dapdap.net/super-swap",
-  target: "_self"
+  path: "/super-swap",
+  target: "_blank"
 }, {
   label: "Chains",
-  path: "https://app.dapdap.net/networks",
-  target: "_self"
+  path: "/networks",
+  target: "_blank"
 }, {
   label: "dApps",
-  path: "https://app.dapdap.net/alldapps",
-  target: "_self"
+  path: "/alldapps",
+  target: "_blank"
 }, {
   label: "Odyssey",
-  path: "https://app.dapdap.net/odyssey",
-  target: "_self"
+  path: "/odyssey",
+  target: "_blank"
 }, {
   label: "Portfolio",
-  path: "https://app.dapdap.net/portfolio",
-  target: "_self"
+  path: "/portfolio",
+  target: "_blank"
 },]
 const SOCIAL_LIST = [{
   icon: (
@@ -157,10 +166,11 @@ export default memo(function Footer() {
               ABOUT_LIST.map(about => (
                 <StyledFont
                   key={about.label}
+                  className="weight"
                   fontWeight="500"
                   style={{ cursor: 'pointer' }}
                   onClick={() => {
-                    about?.path && window.open(about?.path, about?.target)
+                    about?.path && openAppLink(about?.path, about?.target)
                   }}
                 >
                   {about.label}
@@ -175,10 +185,11 @@ export default memo(function Footer() {
                 PRODUCT_LIST.map(product => (
                   <StyledFont
                     key={product.label}
+                    className="weight"
                     fontWeight="500"
                     style={{ cursor: 'pointer' }}
                     onClick={() => {
-                      product?.path && window.open(product?.path, product?.target)
+                      product?.path && openAppLink(product?.path, product.target)
                     }}
                   >
                     {product.label}

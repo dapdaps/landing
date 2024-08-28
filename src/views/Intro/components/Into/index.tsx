@@ -7,6 +7,7 @@ import { StyledFlex, StyledFont, StyledSvg } from "@/styled/styles";
 import Counter from "../Counter";
 
 import useStats from "../../hooks/useStats";
+import { openAppLink } from "@/utils/links";
 const StyledInto = styled.div`
   position: relative;
   margin-top: -148px;
@@ -15,6 +16,12 @@ const StyledInto = styled.div`
   background-size: cover;
   z-index: 10;
   overflow: hidden;
+  ${StyledSvg} {
+    transition: all 0.5s;
+    &:hover {
+      transform: scale(110%);
+    }
+  }
 `
 const StyledIntoTitle = styled.div`
   margin: 72px auto 80px;
@@ -44,7 +51,6 @@ const StyledDapps = styled.div`
 export default memo(function Into() {
   const { stats } = useStats()
   const router = useRouter()
-  console.log('====stats', stats)
   return (
     <StyledInto>
       <StyledIntoTitle>
@@ -64,7 +70,7 @@ export default memo(function Into() {
           <StyledSvg
             style={{ cursor: 'pointer' }}
             onClick={() => {
-              router.push("https://app.dapdap.net/networks")
+              openAppLink("/networks")
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68" fill="none">
@@ -89,7 +95,7 @@ export default memo(function Into() {
           <StyledSvg
             style={{ cursor: 'pointer' }}
             onClick={() => {
-              router.push("https://app.dapdap.net/alldapps")
+              openAppLink("/alldapps")
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68" fill="none">

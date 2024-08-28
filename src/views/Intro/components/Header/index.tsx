@@ -47,6 +47,9 @@ const StyledMenu = styled.div`
   font-weight: 400;
   line-height: 150%; /* 27px */
   cursor: pointer;
+  &:hover {
+    font-weight: 700;
+  }
 `
 
 const StyledMenuPopUpBody = styled.div`

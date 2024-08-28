@@ -10,6 +10,7 @@ import useToast from '@/hooks/useToast';
 import type { FormattedRewardList } from '../../../hooks/useDappReward';
 
 import Tooltip from './';
+import { openAppLink } from '@/utils/links';
 
 const ToolList = styled.div`
   display: flex;
@@ -126,7 +127,7 @@ const TooltipList: React.FC<TooltipListProps> = ({ data }) => {
 
   const onOdysseyClick = (ody: Odyssey) => {
     if (odyssey[ody.id]) {
-      router.push(odyssey[ody.id].path);
+      openAppLink(odyssey[ody.id].path);
       return;
     }
     toast.fail('Invalid odyssey id!');

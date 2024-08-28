@@ -1,12 +1,32 @@
 import { useRouter } from "next/router";
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
-
+import { useSize } from "ahooks";
 import { StyledContainer, StyledFlex, StyledFont, StyledSvg } from "@/styled/styles";
+import { openAppLink } from "@/utils/links";
 
+
+const StyledMiniCard = styled.div`
+  position: relative;
+  flex: 1;
+  border-radius: 30px;
+  height: 300px;
+  background-color: red;
+  cursor: pointer;
+  &:hover {
+    transform: scale(102%);
+  }
+`
 const StyledMiniCardContainer = styled.div`
   width: 100%;
-  padding: 90px 14px 14px;
+  padding: 90px 20px 20px;
+
+  &.mini {
+    ${StyledMiniCard} {
+      width: 100%;
+      flex: unset;
+    }
+  }
 
   @keyframes SwayAnimation {
     0% {
@@ -57,14 +77,8 @@ const StyledMiniCardContainer = styled.div`
 
   .SuperBridgeMiniCard {
   }
-`
-const StyledMiniCard = styled.div`
-  position: relative;
-  flex: 1;
-  border-radius: 30px;
-  height: 300px;
-  background-color: red;
-  cursor: pointer;
+
+
 `
 const StyledAllInOneBg = styled.div`
   position: absolute;
@@ -72,6 +86,7 @@ const StyledAllInOneBg = styled.div`
   top: -14px;
   width: 415px;
   height: 505px;
+  transform-origin: 0% 50%;
 `
 const StyledTiltChainsContainer = styled.div`
   position: absolute;
@@ -142,6 +157,9 @@ const StyledRightSvg = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  &:hover {
+    transform: scale(110%);
+  }
 `
 const StyledBlackRoundedSvg = styled.div`
   position: absolute;
@@ -283,14 +301,16 @@ const TILT_CHAINS = [{
 const POSITIONS = [168, 70]
 export default memo(function MiniCard() {
   const router = useRouter()
-
+  const size = useSize(window.document.getElementsByTagName("body")[0])
   const [rockerRunning, setRockerRunning] = useState(false)
   const [chainsRunning, setChainsRunning] = useState(false)
-
   const [currentIndex, setCurrentIndex] = useState(1)
-
   const miniCardContainerRef = useRef(null)
   const rockerRunningAudioRef = useRef<any>(null)
+  // const allinoneMiniCardRef = useRef(null)
+
+  const isMini = useMemo(() => (size?.width ?? 0) < 1550, [size])
+
 
   const handleMouseEnterAnimateRunning = function (card: any, svg: any) {
     card?.addEventListener("mouseenter", function () {
@@ -344,14 +364,17 @@ export default memo(function MiniCard() {
     };
   }, [currentIndex]);
 
+  useEffect(() => {
+    console.log('===isMini', isMini)
+  }, [isMini])
   return (
-    <StyledMiniCardContainer ref={miniCardContainerRef}>
-      <StyledFlex gap="14px" style={{ marginBottom: 14 }}>
+    <StyledMiniCardContainer className={isMini ? 'mini' : ''} ref={miniCardContainerRef}>
+      <StyledFlex flexDirection={isMini ? "column" : "row"} gap="20px" style={{ marginBottom: 20 }}>
         <StyledMiniCard
-          style={{ backgroundColor: "#5B56F3", height: 614 }}
+          style={{ backgroundColor: "#5B56F3", height: 614, }}
           onClick={() => {
             const path = TILT_CHAINS[currentIndex % TILT_CHAINS.length]?.path
-            router.push(`https://app.dapdap.net/all-in-one/${path}`)
+            openAppLink(`https://app.dapdap.net/all-in-one/${path}`)
           }}
         >
           <StyledRightSvg style={{ right: 10, top: 10 }}>
@@ -380,20 +403,19 @@ export default memo(function MiniCard() {
               }
             </StyledRockerContainer>
           </StyledAllInOneBg>
-          {/* <StyledMiniCardImage src="/images/intro/allinone-bg.png" style={{ width: 415, position: 'absolute', left: 0, top: -14 }} /> */}
           <StyledContainer style={{ position: 'absolute', width: 302, right: 33, bottom: 59 }}>
             <StyledFont color="#FFF" fontSize="56px" fontWeight="700" lineHeight="100%">All-In-One</StyledFont>
             <StyledFont color="#FFF" fontSize="32px" fontWeight="700" lineHeight="100%" style={{ marginTop: 13, marginBottom: 27 }}>for 15+ L2s</StyledFont>
             <StyledFont color="#FFF" fontSize="18px" fontWeight="500" lineHeight="150%">Seamlessly trade, lend, and manage liquidity across multiple networks within a completely unified interface, making your Web3 experience smooth and uninterrupted.</StyledFont>
           </StyledContainer>
         </StyledMiniCard>
-        <StyledFlex flexDirection="column" gap="14px" style={{ flex: 1 }}>
-          <StyledFlex gap="14px" style={{ width: "100%" }}>
+        <StyledFlex flexDirection="column" gap="20px" style={{ flex: 1 }}>
+          <StyledFlex gap="20px" style={{ width: "100%" }}>
             <StyledMiniCard
               className="SuperBridgeMiniCard"
               style={{ backgroundColor: "#F2F2F2" }}
               onClick={() => {
-                router.push("https://app.dapdap.net/super-bridge")
+                openAppLink("/super-bridge")
               }}
             >
               <StyledBlackRoundedSvg style={{ top: 12, left: 12 }}>
@@ -433,7 +455,7 @@ export default memo(function MiniCard() {
               className="SuperSwapMiniCard"
               style={{ backgroundColor: "#5B56F3" }}
               onClick={() => {
-                router.push("https://app.dapdap.net/super-swap")
+                openAppLink("/super-swap")
               }}
             >
               <StyledWhiteRoundedSvg style={{ top: 12, left: 12 }}>
@@ -474,7 +496,7 @@ export default memo(function MiniCard() {
             <StyledMiniCard
               style={{ background: `#EBF479 url(/images/intro/portfolio-bg.svg) no-repeat center`, backgroundSize: '100%' }}
               onClick={() => {
-                router.push("https://app.dapdap.net/portfolio")
+                openAppLink("https://app.dapdap.net/portfolio")
               }}
             >
               <StyledContainer style={{ paddingTop: 48, paddingLeft: 32, paddingRight: 25 }}>
@@ -532,11 +554,11 @@ export default memo(function MiniCard() {
           </StyledContainer>
         </StyledFlex>
       </StyledFlex>
-      <StyledFlex gap="14px">
+      <StyledFlex flexDirection={isMini ? "column" : "row"} gap="20px">
         <StyledMiniCard
           style={{ display: "flex", flex: 2, backgroundColor: "#EBF479", padding: 20 }}
           onClick={() => {
-            router.push("https://app.dapdap.net/odyssey")
+            openAppLink("/odyssey")
           }}
         >
           <StyledRightSvg style={{ right: 10, top: 10 }}>
@@ -564,7 +586,12 @@ export default memo(function MiniCard() {
             </StyledFlex>
           </StyledContainer>
         </StyledMiniCard>
-        <StyledMiniCard style={{ backgroundColor: "#5B56F3" }}>
+        <StyledMiniCard
+          style={{ backgroundColor: "#5B56F3" }}
+          onClick={() => {
+            openAppLink("/odyssey")
+          }}
+        >
           <StyledMiniCardImage src="/images/intro/rewards-bg.png" style={{ position: 'absolute', width: 405, right: 0, top: 0 }} />
           <StyledContainer style={{ paddingTop: 94, paddingLeft: 35, position: 'relative', zIndex: 5 }}>
             <StyledFont color="#FFF" fontSize="36px" fontWeight="700" lineHeight="150%">Earning Rewards</StyledFont>

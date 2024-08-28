@@ -10,6 +10,7 @@ import { memo } from "react";
 import styled from "styled-components";
 
 import { StyledFlex, StyledFont } from "@/styled/styles";
+import { openAppLink } from "@/utils/links";
 const StyledBanner = styled.div`
   margin: 0 auto;
   padding-top: 72px;
@@ -28,6 +29,9 @@ const StyledSuperButton = styled.div`
   background: #18191E;
   backdrop-filter: blur(10px);
   cursor: pointer;
+  &:hover {
+    background-color: #32343E;
+  }
 `
 const StyledExporeButton = styled.div`
   margin: 0 auto;
@@ -41,6 +45,10 @@ const StyledExporeButton = styled.div`
   border-radius: 10px;
   background: #EBF479;
   cursor: pointer;
+  transition: all 0.5s;
+  &:hover {
+    transform: scale(110%);
+  }
 `
 
 const StyledMainHeading = styled.div`
@@ -73,7 +81,10 @@ const StyledMainHeading = styled.div`
     animation: FlickerAnimation 1.5s linear infinite;
   }
   .DavinciSvg {
-    animation: RotateAnimation 3.5s linear infinite;
+    border-radius: 50%;
+    &:hover {
+      animation: RotateAnimation 3.5s linear infinite;
+    }
   }
 `
 const StyledMainTips = styled.div`
@@ -86,11 +97,11 @@ export default memo(function Banner() {
     <StyledBanner>
       <StyledFlex justifyContent="center" gap="10px">
         <StyledFont color="#FFF" fontSize="18px" lineHeight="150%">Quick start your Web3 journey with</StyledFont>
-        <StyledSuperButton style={{ width: 152 }} onClick={() => router.push("https://app.dapdap.net/super-bridge")}>
+        <StyledSuperButton style={{ width: 152 }} onClick={() => openAppLink("/super-bridge")}>
           <BridgeSvg />
           <StyledFont color="#FFF" fontWeight="600" lineHeight="100%">Super Bridge</StyledFont>
         </StyledSuperButton>
-        <StyledSuperButton style={{ width: 145 }} onClick={() => router.push("https://app.dapdap.net/super-swap")}>
+        <StyledSuperButton style={{ width: 145 }} onClick={() => openAppLink("/super-swap")}>
           <SwapSvg />
           <StyledFont color="#FFF" fontWeight="600" lineHeight="100%">SuperSwap</StyledFont>
         </StyledSuperButton>
@@ -99,7 +110,7 @@ export default memo(function Banner() {
         <StyledFont color="#FFF" fontSize="90px" fontWeight="800" lineHeight="100%" textAlign="center">The Next-gen DeFi Consumer App</StyledFont>
         <ArrowSvg style={{ position: "absolute", left: 432, bottom: -43 }} />
         <PoundSignSvg style={{ position: "absolute", left: 178, top: -14 }} />
-        <DavinciSvg className="DavinciSvg" style={{ position: "absolute", right: -142, bottom: -136 }} />
+        <DavinciSvg className="DavinciSvg" style={{ position: "absolute", right: -70, bottom: -76 }} />
         <StarSvg className="StarSvg" style={{ position: "absolute", left: -18, bottom: -37 }} />
       </StyledMainHeading>
       <StyledMainTips>
@@ -107,7 +118,7 @@ export default memo(function Banner() {
       </StyledMainTips>
       <StyledExporeButton
         onClick={() => {
-          router.push('https://app.dapdap.net/')
+          openAppLink()
         }}
       >
         <StyledFont color="#000" fontSize="18px" fontWeight="600">Explore now</StyledFont>
