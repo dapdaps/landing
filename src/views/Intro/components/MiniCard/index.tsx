@@ -21,12 +21,22 @@ const StyledMiniCardContainer = styled.div`
   width: 100%;
   padding: 90px 20px 20px;
 
-  &.mini {
-    ${StyledMiniCard} {
+  &.md {
+    .allinone {
+      flex: 2;
+    }
+  }
+  &.sm {
+    .allinone {
+      flex: unset;
+      width: 100%;
+    }
+    .rewards {
       width: 100%;
       flex: unset;
     }
   }
+    
 
   @keyframes SwayAnimation {
     0% {
@@ -86,7 +96,7 @@ const StyledAllInOneBg = styled.div`
   top: -14px;
   width: 415px;
   height: 505px;
-  transform-origin: 0% 50%;
+  transform-origin: 0% 0%;
 `
 const StyledTiltChainsContainer = styled.div`
   position: absolute;
@@ -307,9 +317,17 @@ export default memo(function MiniCard() {
   const [currentIndex, setCurrentIndex] = useState(1)
   const miniCardContainerRef = useRef(null)
   const rockerRunningAudioRef = useRef<any>(null)
-  // const allinoneMiniCardRef = useRef(null)
-
-  const isMini = useMemo(() => (size?.width ?? 0) < 1550, [size])
+  const screenType = useMemo(() => {
+    if (size?.width < 1280) {
+      return "sm"
+    }
+    if (size?.width >= 1280 && size?.width < 1550) {
+      return "md"
+    }
+    if (size?.width >= 1550) {
+      return "lg"
+    }
+  }, [size])
 
 
   const handleMouseEnterAnimateRunning = function (card: any, svg: any) {
@@ -363,15 +381,12 @@ export default memo(function MiniCard() {
       swiperSlide?.removeEventListener('transitionend', handleTransitionEnd);
     };
   }, [currentIndex]);
-
-  useEffect(() => {
-    console.log('===isMini', isMini)
-  }, [isMini])
   return (
-    <StyledMiniCardContainer className={isMini ? 'mini' : ''} ref={miniCardContainerRef}>
-      <StyledFlex flexDirection={isMini ? "column" : "row"} gap="20px" style={{ marginBottom: 20 }}>
+    <StyledMiniCardContainer className={screenType} ref={miniCardContainerRef}>
+      <StyledFlex gap="20px" flexDirection={screenType === "sm" ? "column" : "row"} style={{ marginBottom: 20 }}>
         <StyledMiniCard
           style={{ backgroundColor: "#5B56F3", height: 614, }}
+          className="allinone"
           onClick={() => {
             const path = TILT_CHAINS[currentIndex % TILT_CHAINS.length]?.path
             openAppLink(`https://app.dapdap.net/all-in-one/${path}`)
@@ -409,8 +424,8 @@ export default memo(function MiniCard() {
             <StyledFont color="#FFF" fontSize="18px" fontWeight="500" lineHeight="150%">Seamlessly trade, lend, and manage liquidity across multiple networks within a completely unified interface, making your Web3 experience smooth and uninterrupted.</StyledFont>
           </StyledContainer>
         </StyledMiniCard>
-        <StyledFlex flexDirection="column" gap="20px" style={{ flex: 1 }}>
-          <StyledFlex gap="20px" style={{ width: "100%" }}>
+        <StyledFlex flexDirection="column" alignItems="flex-start" gap="20px" style={{ flex: screenType === "lg" ? 1 : "unset", width: screenType === "sm" ? "100%" : "auto" }}>
+          <StyledFlex flexDirection={screenType === "md" ? "column" : "row"} alignItems="flex-start" gap="20px" style={{ width: "100%", height: screenType === "md" ? 614 : "auto" }}>
             <StyledMiniCard
               className="SuperBridgeMiniCard"
               style={{ backgroundColor: "#F2F2F2" }}
@@ -492,9 +507,77 @@ export default memo(function MiniCard() {
               </StyledContainer>
             </StyledMiniCard>
           </StyledFlex>
+          {
+            screenType === "lg" && (
+              <StyledContainer style={{ width: "100%" }}>
+                <StyledMiniCard
+                  style={{ background: `#EBF479 url(/images/intro/portfolio-bg.svg) no-repeat center`, backgroundSize: '100%' }}
+                  onClick={() => {
+                    openAppLink("https://app.dapdap.net/portfolio")
+                  }}
+                >
+                  <StyledContainer style={{ paddingTop: 48, paddingLeft: 32, paddingRight: 25 }}>
+                    <StyledRightSvg style={{ right: 10, top: 10 }}>
+                      {BlackRightSvg}
+                    </StyledRightSvg>
+                    <StyledSvg style={{ position: 'absolute', right: 73, top: -46 }}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="125" height="148" viewBox="0 0 125 148" fill="none">
+                        <path d="M123.912 103.516C122.782 84.6775 107.283 81.5349 99.4339 84.3607L60.8156 125.806C60.3446 132.243 63.3588 145.493 79.1833 147C98.964 148.884 125.325 127.065 123.912 103.516Z" fill="white" stroke="black" />
+                        <path d="M75.884 128.633C69.2714 129.883 48.5381 131.433 34.4388 120.626C28.0757 115.749 20.1899 105.299 13.4525 99.2961C6.71505 93.2936 16.4484 85.7905 23.9344 88.0415C31.4204 90.2924 38.1578 97.7955 46.0166 99.2961C53.8754 100.797 66.259 95.8717 63.6389 78.6146C61.2631 62.967 47.4425 61.462 39.6535 65.4842C27.3031 71.8618 14.5298 87.6899 3.73462 78.6146C-7.86795 68.8606 19.8454 50.8531 41.9157 38.8482C49.4017 34.7762 66.6046 43.2383 66.6046 43.2383C61.9881 32.271 55.3003 8.61057 65.4813 1.70771C70.3748 -1.61014 75.1015 7.13069 79.0751 19.7153C80.4079 13.9629 84.9449 2.68322 92.4309 3.58359C96.9499 4.12711 97.0198 13.8853 96.3654 28.7872C97.3878 29.2581 99.9035 31.9297 101.787 38.8482C103.671 45.7666 98.1766 58.258 95.1938 63.6388C98.9368 67.3904 101.787 81.8717 101.787 94.2518C101.787 116.889 89.0913 124.881 75.884 128.633Z" fill="#EBF479" />
+                        <path d="M66.6046 43.2383C66.6046 43.2383 49.4017 34.7762 41.9157 38.8482C19.8454 50.8531 -7.86795 68.8606 3.73462 78.6146C14.5298 87.6899 27.3031 71.8618 39.6535 65.4842C47.4425 61.462 61.2631 62.967 63.6389 78.6146C66.259 95.8717 53.8754 100.797 46.0166 99.2961C38.1578 97.7955 31.4204 90.2924 23.9344 88.0415C16.4484 85.7905 6.71505 93.2936 13.4525 99.2961C20.1899 105.299 28.0757 115.749 34.4388 120.626C48.5381 131.433 69.2714 129.883 75.8841 128.633C89.0913 124.881 101.787 116.889 101.787 94.2518C101.787 81.8717 98.9368 67.3904 95.1938 63.6388M66.6046 43.2383C61.9881 32.271 55.3003 8.61057 65.4813 1.70771C70.3748 -1.61014 75.1015 7.13069 79.0751 19.7153M66.6046 43.2383C75.9427 47.3232 89.8827 54.4329 95.1938 63.6388M95.1938 63.6388C95.1938 63.6388 83.3687 33.3131 79.0751 19.7153M95.1938 63.6388C98.1766 58.258 103.671 45.7666 101.787 38.8482C99.9035 31.9297 97.3878 29.2581 96.3654 28.7872M95.1938 63.6388C95.1938 50.5724 95.9357 38.5711 96.3654 28.7872M79.0751 19.7153C80.4079 13.9629 84.9449 2.68322 92.4309 3.58359C96.9499 4.12711 97.0198 13.8853 96.3654 28.7872" stroke="black" />
+                      </svg>
+                      <StyledEyesImage src="/images/intro/eyes.gif" />
+                    </StyledSvg>
+                    <StyledFont color="#000" fontSize="36px" fontWeight="700">Portfolio Analytics</StyledFont>
+                    <StyledFont color="#000" fontSize="18px" fontWeight="500" lineHeight="150%" style={{ marginTop: 31, marginBottom: 22 }}>Effortlessly view and manage your assets across networks. Track your bridging, swapping, liquidity, and lending activities in real-time with our comprehensive data support.</StyledFont>
+                    <StyledFlex gap="10px">
+                      <StyledPortfolioButton>
+                        <StyledSvg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.000121621 3.62261C-1.62888e-05 3.6226 -3.66687e-05 3.6226 5.92328e-05 3.6226V0C0.634175 0 1.37268 0.184967 2.09001 0.44824C2.84274 0.724506 3.69817 1.13393 4.59563 1.68403C6.39086 2.78442 8.41188 4.48325 10.1413 6.9028C12.9487 10.8305 15.9264 11.3774 17 11.3774V15C14.8574 15 10.8132 13.9436 7.31823 9.0539C5.89643 7.06471 4.24179 5.68002 2.80456 4.79907C2.0858 4.3585 1.4358 4.0528 0.914865 3.86161C0.654561 3.76607 0.43763 3.70322 0.26949 3.66554C0.186006 3.64682 0.120091 3.63556 0.0712859 3.62921C0.0246953 3.62315 0.0019605 3.62265 0.000121621 3.62261Z" fill="#EBF479" />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.16869 9.40994C2.83695 11.1348 0.675467 11.6191 0 11.6191V15C1.62183 15 4.5144 14.1561 7.30521 12.0917L5.16869 9.40994ZM13.173 2.18196C11.9247 2.86261 10.6453 3.80061 9.53594 4.86955L12.0169 7.26018C12.9125 6.39721 13.9407 5.64798 14.901 5.1244C15.9136 4.57223 16.6488 4.38086 17 4.38086V1C15.7431 1 14.3689 1.52989 13.173 2.18196Z" fill="#979ABE" />
+                          </svg>
+                        </StyledSvg>
+                        <StyledFont color="#FFF" fontSize="16px" fontWeight="500">Bridged</StyledFont>
+                      </StyledPortfolioButton>
+                      <StyledPortfolioButton>
+                        <StyledSvg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
+                            <circle cx="16" cy="10" r="8" fill="#979ABE" />
+                            <circle cx="10" cy="10" r="9" fill="#EBF479" stroke="#5B56F3" stroke-width="2" />
+                          </svg>
+                        </StyledSvg>
+                        <StyledFont color="#FFF" fontSize="16px" fontWeight="500">Swapped</StyledFont>
+                      </StyledPortfolioButton>
+                      <StyledPortfolioButton>
+                        <StyledSvg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="19" viewBox="0 0 16 19" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.80193 10.1848C13.4711 9.28616 14.3966 11.383 14.1621 11.1765C14.1621 10.5794 13.8617 9.67863 13.1648 8.51671C12.4938 7.39823 11.5731 6.22921 10.6119 5.14588C9.66921 4.08348 8.72121 3.14099 8 2.45689C7.27879 3.14099 6.33079 4.08348 5.38812 5.14588C4.42687 6.22921 3.50615 7.39823 2.83524 8.51671C2.13827 9.67863 1.83786 10.5794 1.83786 11.1765C1.83786 14.5047 6.73883 10.935 9.80193 10.1848ZM8 19C12.4183 19 16 15.4973 16 11.1765C16 6.85565 8 0 8 0C8 0 0 6.85565 0 11.1765C0 15.4973 3.58172 19 8 19Z" fill="#EBF479" />
+                          </svg>
+                        </StyledSvg>
+                        <StyledFont color="#FFF" fontSize="16px" fontWeight="500">Liquidity Added</StyledFont>
+                      </StyledPortfolioButton>
+                      <StyledPortfolioButton>
+                        <StyledSvg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.1515 13.1434C20.6962 11.9635 21 10.6496 21 9.26471C21 4.14795 16.8521 0 11.7353 0C6.61857 0 2.47062 4.14795 2.47062 9.26471C2.47062 10.4396 2.68933 11.5635 3.08827 12.5978C3.1362 12.7221 3.18674 12.845 3.23981 12.9667L0.371321 14.3149C0.293373 14.3513 0.223637 14.4022 0.166113 14.4647C0.10859 14.5271 0.0644118 14.5999 0.0361141 14.6789C0.0078164 14.7579 -0.00404402 14.8415 0.00121359 14.9249C0.0064712 15.0083 0.0287434 15.0899 0.0667519 15.165C0.10445 15.2403 0.15717 15.3076 0.221885 15.3631C0.2866 15.4186 0.362038 15.4613 0.443868 15.4886C0.525699 15.5159 0.612312 15.5273 0.698738 15.5223C0.785163 15.5172 0.8697 15.4957 0.947497 15.459L6.05397 13.0588C6.12385 13.0258 6.20296 13.0079 6.28207 13.0079H11.941C12.2877 13.0079 12.5778 13.2485 12.6306 13.5806C12.656 13.7396 12.6214 13.9021 12.533 14.0385C12.4447 14.175 12.3085 14.2762 12.1493 14.3238L9.62837 15.0874C9.35413 15.1714 9.16822 15.417 9.1669 15.6944C9.16558 15.9719 9.35281 16.2175 9.62705 16.3015L12.4737 17.1694C12.7572 17.2562 13.0572 17.2812 13.3519 17.2427C13.6467 17.2042 13.929 17.1031 14.1784 16.9467L18.6152 14.1722L18.8136 14.0842C19.0926 14.0098 19.4023 14.1135 19.5697 14.3595C19.6588 14.4913 19.6964 14.6495 19.6759 14.8057C19.6553 14.9618 19.578 15.1059 19.4576 15.2121L14.4474 19.1522C13.7275 19.7172 12.7387 19.8801 11.8658 19.5747L6.62883 17.7446C6.45611 17.6836 6.26361 17.6963 6.10012 17.779L2.88962 19.3965C2.81281 19.4352 2.74464 19.4881 2.68902 19.5522C2.63339 19.6163 2.5914 19.6903 2.56544 19.7701C2.53948 19.8499 2.53007 19.9338 2.53773 20.0171C2.54539 20.1004 2.56998 20.1814 2.6101 20.2555C2.77887 20.5673 3.17837 20.6882 3.50007 20.5253L6.45347 19.0376L11.4175 20.7735C11.854 20.9262 12.3102 21 12.7637 21C13.6682 21 14.5634 20.7048 15.282 20.1423L20.3041 16.1933C20.3107 16.187 20.3173 16.1819 20.3239 16.1768C21.0675 15.5443 21.2178 14.4638 20.6746 13.6646C20.5318 13.4544 20.3532 13.2798 20.1515 13.1434Z" fill="#EBF479" />
+                          </svg>
+                        </StyledSvg>
+                        <StyledFont color="#FFF" fontSize="16px" fontWeight="500">Lent & Borrowed</StyledFont>
+                      </StyledPortfolioButton>
+                    </StyledFlex>
+                  </StyledContainer>
+                </StyledMiniCard>
+              </StyledContainer>
+            )
+          }
+        </StyledFlex>
+      </StyledFlex>
+      {
+        screenType !== "lg" && (
           <StyledContainer style={{ width: "100%" }}>
             <StyledMiniCard
-              style={{ background: `#EBF479 url(/images/intro/portfolio-bg.svg) no-repeat center`, backgroundSize: '100%' }}
+              style={{ background: `#EBF479 url(/images/intro/portfolio-bg.svg) no-repeat center`, backgroundSize: '100%', marginBottom: 20 }}
               onClick={() => {
                 openAppLink("https://app.dapdap.net/portfolio")
               }}
@@ -552,9 +635,9 @@ export default memo(function MiniCard() {
               </StyledContainer>
             </StyledMiniCard>
           </StyledContainer>
-        </StyledFlex>
-      </StyledFlex>
-      <StyledFlex flexDirection={isMini ? "column" : "row"} gap="20px">
+        )
+      }
+      <StyledFlex flexDirection={screenType === "sm" ? "column" : "row"} gap="20px">
         <StyledMiniCard
           style={{ display: "flex", flex: 2, backgroundColor: "#EBF479", padding: 20 }}
           onClick={() => {
@@ -587,6 +670,7 @@ export default memo(function MiniCard() {
           </StyledContainer>
         </StyledMiniCard>
         <StyledMiniCard
+          className="rewards"
           style={{ backgroundColor: "#5B56F3" }}
           onClick={() => {
             openAppLink("/odyssey")
