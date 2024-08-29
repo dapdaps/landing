@@ -118,7 +118,7 @@ export default memo(function Banner() {
       </StyledMainTips>
       <StyledExporeButton
         onClick={() => {
-          openAppLink()
+          openAppLink("/")
         }}
       >
         <StyledFont color="#000" fontSize="18px" fontWeight="600">Explore now</StyledFont>

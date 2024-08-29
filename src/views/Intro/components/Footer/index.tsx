@@ -160,7 +160,7 @@ export default memo(function Footer() {
           </StyledFlex>
         </StyledFooterL>
         <StyledFooterR>
-          <StyledFlex flexDirection="column" alignItems="fle-start" gap="14px">
+          <StyledFlex flexDirection="column" alignItems="fle-start" gap="14px" style={{ width: 132 }}>
             <StyledFont fontSize="18px" fontWeight="700">ABOUT</StyledFont>
             {
               ABOUT_LIST.map(about => (
@@ -187,7 +187,7 @@ export default memo(function Footer() {
                     key={product.label}
                     className="weight"
                     fontWeight="500"
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: 'pointer', width: 110 }}
                     onClick={() => {
                       product?.path && openAppLink(product?.path, product.target)
                     }}
