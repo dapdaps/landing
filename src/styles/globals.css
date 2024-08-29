@@ -1,0 +1,294 @@
+@import 'bootstrap';
+
+/* url('/fonts/Montserrat-Italic-VariableFont_wght.ttf'), */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-VariableFont_wght.ttf');
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+@font-face {
+  font-family: 'FK Grotesk';
+  src:
+    url('/fonts/FKGrotesk.woff2') format('woff2 supports variations'),
+    url('/fonts/FKGrotesk.woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+@font-face {
+  font-family: 'Burial';
+  src: url('/fonts/Burial.ttf') format('truetype');
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+@font-face {
+  font-family: '5squared pixel';
+  src: url('/fonts/5squared-pixel.ttf') format('truetype');
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+/* gantari-300 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/gantari-v1-latin-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-300italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: italic;
+  font-weight: 300;
+  src: url('/fonts/gantari-v1-latin-300italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/gantari-v1-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/gantari-v1-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/gantari-v1-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-500italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: italic;
+  font-weight: 500;
+  src: url('/fonts/gantari-v1-latin-500italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/gantari-v1-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-600italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: italic;
+  font-weight: 600;
+  src: url('/fonts/gantari-v1-latin-600italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/gantari-v1-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-700italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: italic;
+  font-weight: 700;
+  src: url('/fonts/gantari-v1-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-800 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/gantari-v1-latin-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* gantari-800italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Gantari';
+  font-style: italic;
+  font-weight: 800;
+  src: url('/fonts/gantari-v1-latin-800italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+  font-family: 'Trans-America';
+  src: url('/fonts/TransAmericaRegular-893n.otf'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  font-weight: 400;
+  font-stretch: 75% 125%;
+}
+
+/*Chakra Petch Used for odyssey vol.5*/
+@font-face {
+  font-family: 'Chakra Petch';
+  src: url('/fonts/ChakraPetch-Regular.woff2') format('woff2');
+  /*font-weight: 200 900;*/
+  font-stretch: 75% 125%;
+}
+
+body,
+html {
+  --body-top-padding: 24px;
+  -webkit-font-smoothing: antialiased;
+  --onboard-modal-z-index: 2000;
+  --wcm-z-index: 510;
+  color: var(--sand12);
+  font: var(--text-base);
+  font-family: Gantari;
+  background-color: rgb(24, 25, 33);
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.btn {
+  text-decoration: none;
+}
+
+#near-wallet-selector-modal .open {
+  z-index: 1001;
+}
+
+#w3m-modal {
+  z-index: 1002;
+}
+
+#launcher {
+  color-scheme: light;
+  width: 48px;
+  height: 50px;
+  padding: 0px;
+  margin: 10px 20px;
+  position: fixed;
+  bottom: 10px;
+  overflow: visible;
+  opacity: 1;
+  border: 0px;
+  z-index: 999998;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-property: opacity, top, bottom;
+  right: 10px;
+}
+
+@media (max-width: 650px) {
+  #launcher {
+    right: 2px;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 650px) {
+  :root {
+    --account-center-position-bottom: 50px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
+:root {
+  --account-center-z-index: 100;
+}
+
+body::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  /**/
+}
+body::-webkit-scrollbar-track,
+div::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 6px;
+}
+body::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+}
+body::-webkit-scrollbar-thumb:hover,
+div::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.skeleton {
+  line-height: 1;
+}
+
+input {
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
+
+button {
+  border: none;
+}
+
+svg {
+  * {
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.swiper {
+  overflow: inherit;
+}
+/* src/views/analytics/components/vertical-bar-chart/index.tsx use */
+.recharts-wrapper.vertical-chart .recharts-cartesian-grid-horizontal line:nth-last-child(2),
+.recharts-wrapper.vertical-chart .recharts-cartesian-grid-horizontal line:last-child {
+  stroke-opacity: 0 !important;
+}
+
+.recharts-wrapper .recharts-cartesian-grid-horizontal line {
+  stroke: rgba(217, 217, 217, 0.1);
+  fill: rgba(217, 217, 217, 0.1);
+}
+
+.underline {
+  text-decoration-line: underline;
+}
+
+.link {
+  text-decoration-line: underline;
+  cursor: pointer;
+  color: inherit;
+}
+
+.link:hover {
+  opacity: 0.9;
+}
+
+.link:active {
+  opacity: 0.8;
+}
+
+/* Fix the top blocking navigation bar of toast  */
+.Toastify__toast-container--top-right {
+  top: calc(74px - 1em) !important;
+}
+
