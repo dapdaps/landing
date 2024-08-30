@@ -18,6 +18,8 @@ const StyledBanner = styled.div`
   width: 100%;
   background: url('/images/intro/banner-bg.svg') no-repeat center;
   background-size: 100% 511px;
+  overflow: hidden;
+  
 `
 const StyledSuperButton = styled.div`
   display: flex;
@@ -54,7 +56,8 @@ const StyledExporeButton = styled.div`
 const StyledMainHeading = styled.div`
   position: relative;
   margin: 30px auto 62px;
-  width: 917px;
+  max-width: 917px;
+  font-size: 16px;
   @keyframes FlickerAnimation {
     0% {
       transform: scale(0);
@@ -86,6 +89,17 @@ const StyledMainHeading = styled.div`
       animation: RotateAnimation 3.5s linear infinite;
     }
   }
+
+  @media (max-width: 800px) {
+    font-size: 10px;
+  }
+  @media screen and (min-width: 800px) and (max-width: 1280px) {
+    font-size: 12px;
+  }
+  @media screen and (min-width: 1280px) and (max-width: 1550px) {
+    font-size: 14px;
+  }
+
 `
 const StyledMainTips = styled.div`
   width: 736px;
@@ -107,11 +121,11 @@ export default memo(function Banner() {
         </StyledSuperButton>
       </StyledFlex>
       <StyledMainHeading>
-        <StyledFont color="#FFF" fontSize="90px" fontWeight="800" lineHeight="100%" textAlign="center">The Next-gen DeFi Consumer App</StyledFont>
-        <ArrowSvg style={{ position: "absolute", left: 432, bottom: -43 }} />
-        <PoundSignSvg style={{ position: "absolute", left: 178, top: -14 }} />
-        <DavinciSvg className="DavinciSvg" style={{ position: "absolute", right: -70, bottom: -76 }} />
-        <StarSvg className="StarSvg" style={{ position: "absolute", left: -18, bottom: -37 }} />
+        <StyledFont color="#FFF" fontSize="5.625em" fontWeight="800" lineHeight="100%" textAlign="center">The Next-gen DeFi Consumer App</StyledFont>
+        <ArrowSvg style={{ position: "absolute", left: "27em", bottom: "-2.687em" }} />
+        <PoundSignSvg style={{ position: "absolute", left: "11.125em", top: "-0.875em" }} />
+        <DavinciSvg className="DavinciSvg" style={{ position: "absolute", right: "-4.375em", bottom: "-4.75em" }} />
+        <StarSvg className="StarSvg" style={{ position: "absolute", left: "-1.125em", bottom: "-2.3125em" }} />
       </StyledMainHeading>
       <StyledMainTips>
         <StyledFont color="#FFF" fontSize="20px" lineHeight="150%" textAlign="center">DapDap offers a first-of-its-kind DeFi experience. We simplify the complex landscape of Ethereum L2s and EVMs, providing a single, unified gateway to explore and interact with multiple networks and their apps.</StyledFont>

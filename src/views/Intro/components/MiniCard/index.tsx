@@ -25,12 +25,17 @@ const StyledMiniCardContainer = styled.div`
     .allinone {
       flex: 2;
     }
+    .SuperBridgeMiniCard,
+    .SuperSwapMiniCard {
+      width: 100%;
+    }
   }
   &.sm {
     .allinone {
       flex: unset;
       width: 100%;
     }
+    .odyssey,
     .rewards {
       width: 100%;
       flex: unset;
@@ -419,13 +424,13 @@ export default memo(function MiniCard() {
               }
             </StyledRockerContainer>
           </StyledAllInOneBg>
-          <StyledContainer style={{ position: 'absolute', width: 302, right: 33, bottom: 59 }}>
+          <StyledContainer style={{ position: 'absolute', width: "calc(100% - 455px)", right: 33, bottom: 65 }}>
             <StyledFont color="#FFF" fontSize="56px" fontWeight="700" lineHeight="100%">All-In-One</StyledFont>
             <StyledFont color="#FFF" fontSize="32px" fontWeight="700" lineHeight="100%" style={{ marginTop: 13, marginBottom: 27 }}>for 15+ L2s</StyledFont>
             <StyledFont color="#FFF" fontSize="18px" fontWeight="500" lineHeight="150%">Seamlessly trade, lend, and manage liquidity across multiple networks within a completely unified interface, making your Web3 experience smooth and uninterrupted.</StyledFont>
           </StyledContainer>
         </StyledMiniCard>
-        <StyledFlex flexDirection="column" alignItems="flex-start" gap="20px" style={{ flex: screenType === "lg" ? 1 : "unset", width: screenType === "sm" ? "100%" : "auto" }}>
+        <StyledFlex flexDirection="column" alignItems="flex-start" gap="20px" style={{ flex: 1, width: screenType === "sm" ? "100%" : "auto" }}>
           <StyledFlex flexDirection={screenType === "md" ? "column" : "row"} alignItems="flex-start" gap="20px" style={{ width: "100%", height: screenType === "md" ? 614 : "auto" }}>
             <StyledMiniCard
               className="SuperBridgeMiniCard"
@@ -462,7 +467,7 @@ export default memo(function MiniCard() {
                   </StyledSvg>
                   <StyledFont color="#000" fontSize="26px" fontWeight="700" lineHeight="100%">Super Bridge</StyledFont>
                 </StyledFlex>
-                <StyledFont color="#000" fontSize="18px" fontWeight="500" lineHeight="150%" style={{ width: 322, paddingLeft: 33, opacity: 0.8 }}>
+                <StyledFont color="#000" fontSize="18px" fontWeight="500" lineHeight="150%" style={{ paddingLeft: 33, paddingRight: 20, opacity: 0.8 }}>
                   One UI to rule them all: Super Bridge aggregates routes from 18+ top bridges, ensuring you always receive optimal returns!
                 </StyledFont>
               </StyledContainer>
@@ -502,7 +507,7 @@ export default memo(function MiniCard() {
                   </StyledSvg>
                   <StyledFont color="#FFF" fontSize="26px" fontWeight="700" lineHeight="100%">Super Swap</StyledFont>
                 </StyledFlex>
-                <StyledFont color="#FFF" fontSize="18px" fontWeight="500" lineHeight="150%" style={{ width: 322, paddingLeft: 33, opacity: 0.8 }}>
+                <StyledFont color="#FFF" fontSize="18px" fontWeight="500" lineHeight="150%" style={{ paddingLeft: 33, paddingRight: 20, opacity: 0.8 }}>
                   One UI to rule them all: Super Swap aggregates providers from 75+ of the most popular DEXes, guaranteeing your trades always take the best routes!
                 </StyledFont>
               </StyledContainer>
@@ -641,6 +646,7 @@ export default memo(function MiniCard() {
       <StyledFlex flexDirection={screenType === "sm" ? "column" : "row"} gap="20px">
         <StyledMiniCard
           style={{ display: "flex", flex: 2, backgroundColor: "#EBF479", padding: 20 }}
+          className="odyssey"
           onClick={() => {
             openAppLink("/odyssey")
           }}
