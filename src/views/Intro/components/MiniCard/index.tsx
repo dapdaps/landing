@@ -391,7 +391,7 @@ export default memo(function MiniCard() {
     <StyledMiniCardContainer className={screenType} ref={miniCardContainerRef}>
       <StyledFlex gap="20px" flexDirection={screenType === "sm" ? "column" : "row"} style={{ marginBottom: 20 }}>
         <StyledMiniCard
-          style={{ backgroundColor: "#5B56F3", height: 614, }}
+          style={{ backgroundColor: "#5B56F3", height: screenType === "sm" ? 514 : 614, }}
           className="allinone"
           onClick={() => {
             const path = TILT_CHAINS[currentIndex % TILT_CHAINS.length]?.path
@@ -424,7 +424,7 @@ export default memo(function MiniCard() {
               }
             </StyledRockerContainer>
           </StyledAllInOneBg>
-          <StyledContainer style={{ position: 'absolute', width: "calc(100% - 455px)", right: 33, bottom: 65 }}>
+          <StyledContainer style={{ position: 'absolute', width: "calc(100% - 455px)", right: 33, bottom: screenType === "sm" ? 85 : 65 }}>
             <StyledFont color="#FFF" fontSize="56px" fontWeight="700" lineHeight="100%">All-In-One</StyledFont>
             <StyledFont color="#FFF" fontSize="32px" fontWeight="700" lineHeight="100%" style={{ marginTop: 13, marginBottom: 27 }}>for 15+ L2s</StyledFont>
             <StyledFont color="#FFF" fontSize="18px" fontWeight="500" lineHeight="150%">Seamlessly trade, lend, and manage liquidity across multiple networks within a completely unified interface, making your Web3 experience smooth and uninterrupted.</StyledFont>
@@ -691,6 +691,6 @@ export default memo(function MiniCard() {
         </StyledMiniCard>
       </StyledFlex>
       <StyledRockerRunningAudio ref={rockerRunningAudioRef} src="/images/intro/allinone/click-rocker.mp3" />
-    </StyledMiniCardContainer>
+    </StyledMiniCardContainer >
   )
 })
