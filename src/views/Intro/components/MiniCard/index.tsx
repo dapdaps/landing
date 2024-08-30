@@ -318,13 +318,14 @@ export default memo(function MiniCard() {
   const miniCardContainerRef = useRef(null)
   const rockerRunningAudioRef = useRef<any>(null)
   const screenType = useMemo(() => {
-    if (size?.width < 1280) {
+    const width = size?.width ?? 0
+    if (width < 1280) {
       return "sm"
     }
-    if (size?.width >= 1280 && size?.width < 1550) {
+    if (width >= 1280 && width < 1550) {
       return "md"
     }
-    if (size?.width >= 1550) {
+    if (width >= 1550) {
       return "lg"
     }
   }, [size])
