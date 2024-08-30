@@ -34,12 +34,17 @@ const StyledFooterL = styled.div`
 `
 const StyledFooterR = styled.div`
   padding-top: 42px;
-  padding-right: 84px;
+  padding-right: 5.25em;
   display: flex;
   align-items: flex-start;
-  gap: 140px;
+  gap: 8.75em;
   .weight:hover {
     font-weight: 600;
+  }
+
+  @media (max-width: 1280px) {
+    padding-right: 0;
+    overflow: hidden;
   }
 `
 const StyledLogoImage = styled.img`
@@ -160,7 +165,7 @@ export default memo(function Footer() {
           </StyledFlex>
         </StyledFooterL>
         <StyledFooterR>
-          <StyledFlex flexDirection="column" alignItems="fle-start" gap="14px" style={{ width: 132 }}>
+          <StyledFlex flexDirection="column" alignItems="fle-start" gap="14px" style={{ width: "8.25em" }}>
             <StyledFont fontSize="18px" fontWeight="700">ABOUT</StyledFont>
             {
               ABOUT_LIST.map(about => (

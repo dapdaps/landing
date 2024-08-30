@@ -5,35 +5,30 @@ import chainCofig from "@/config/chains";
 import { openAppLink } from "@/utils/links";
 import { useChainsStore } from '@/stores/chains';
 import { IdToPath } from "@/config/all-in-one/chains";
-const StyledRotateNetworksContainer = styled.div`
-  position: relative;
-  margin: 0 auto;
-  padding-top: 139px;
-  width: 1277px;
-  height: 479px;
-  overflow: hidden;
-`
+import cls from "classnames"
+
 const StyledRotateNetworks = styled.div`
   position: absolute;
   left: 50%;
   top: 139px;
-  margin-left: -780px;
+  /* margin-left: -780px; */
   width: 1560px;
   height: 1560px;
   transform-origin: center;
   transform: rotate(0deg);
-  animation: RotateAnimation 50s linear infinite;
-  /* &:hover {
-    animation-play-state: paused;
-  } */
-  @keyframes RotateAnimation {
+  transform: translateX(-50%);
+  animation: NetworksRotateAnimation 50s linear infinite;
+  
+  @keyframes NetworksRotateAnimation {
     0% {
-      transform: rotate(0deg);
+      transform: translateX(-50%) rotate(0deg);
     }
     100% {
-      transform: rotate(360deg);
+      transform: translateX(-50%) rotate(360deg);
     }
   }
+
+  
 `
 const StyledRotateNetwork = styled.div`
   position: absolute;
@@ -43,6 +38,18 @@ const StyledRotateNetwork = styled.div`
   width: 72px;
   height: 780px;
   transform-origin: center bottom;
+`
+
+const StyledRotateNetworksContainer = styled.div`
+  position: relative;
+  margin: 0 auto;
+  padding-top: 139px;
+  min-width: 1277px;
+  height: 479px;
+  overflow: hidden;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    min-width: 768px;
+  }
 `
 const StyledRotateNetworkImage = styled.img`
   cursor: pointer;
