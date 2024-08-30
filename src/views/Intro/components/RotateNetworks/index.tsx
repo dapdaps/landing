@@ -17,9 +17,9 @@ const StyledRotateNetworks = styled.div`
   transform-origin: center;
   transform: rotate(0deg);
   transform: translateX(-50%);
-  animation: RotateAnimation 50s linear infinite;
+  animation: NetworksRotateAnimation 50s linear infinite;
   
-  @keyframes RotateAnimation {
+  @keyframes NetworksRotateAnimation {
     0% {
       transform: translateX(-50%) rotate(0deg);
     }
