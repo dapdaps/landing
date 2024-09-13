@@ -5,10 +5,10 @@ import DavinciSvg from "@public/images/intro/davinci.svg?url";
 import PoundSignSvg from "@public/images/intro/pound-sign.svg?url";
 import StarSvg from "@public/images/intro/star.svg?url";
 import SwapSvg from "@public/images/intro/swap.svg";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { memo } from "react";
 import styled from "styled-components";
-import Image from "next/image";
 
 import { StyledFlex, StyledFont } from "@/styled/styles";
 import { openAppLink } from "@/utils/links";
