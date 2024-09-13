@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 import styled from 'styled-components';
 
 import { useSimpleLayout } from '@/hooks/useLayout';
@@ -55,26 +56,37 @@ const StyledLink = styled.span`
     }
 `
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://app.dapdap.net';
+
+
 const NotFoundPage: NextPageWithLayout = () => {
-  const router = useRouter();
-  const currentPath = router.asPath; 
-
-  const goto = () => {
-    const newUrl = `https://app.dapdap.net${currentPath}`; 
-    window.location.href = newUrl; 
-  }
-
-  return (
-    <StyledContainer>
-      <StyledLogo src="/images/404-logo.png" alt='404' />
-      <StyledText>URL has been updated to <StyledLink onClick={goto}>app.dapdap.net{currentPath}</StyledLink> </StyledText>
-      <StyledButton
-        onClick={goto}
-      >
-        Go to DapDap
-      </StyledButton>
-    </StyledContainer>
-  );
+    const router = useRouter();
+    const currentPath = router.asPath;
+  
+    const handleRedirect = useCallback(() => {
+      const newUrl = `${BASE_URL}${currentPath}`;
+      router.push(newUrl).catch((error) => {
+        console.error('Navigation failed:', error);
+      });
+    }, [currentPath, router]);
+  
+    return (
+      <StyledContainer>
+        <StyledLogo src="/images/404-logo.png" alt="404" />
+        <StyledText>
+          URL has been updated to{' '}
+          <StyledLink onClick={(e) => {
+            e.preventDefault();
+            handleRedirect();
+          }}>
+            {BASE_URL}{currentPath}
+          </StyledLink>
+        </StyledText>
+        <StyledButton onClick={handleRedirect}>
+          Go to DapDap
+        </StyledButton>
+      </StyledContainer>
+    );
 };
 
 NotFoundPage.getLayout = useSimpleLayout;
