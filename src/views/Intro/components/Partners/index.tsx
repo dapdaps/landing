@@ -74,7 +74,7 @@ const RecentRewards = (props: Props) => {
     {
       bg: '#EBF479',
       color: '#000',
-      name: 'Hero',
+      name: '0x7feathers',
       tips: 'Technical Marketing Lead',
       desc: 'Reimagining the Open Web',
       link: 'https://x.com/chrestomanzi',
