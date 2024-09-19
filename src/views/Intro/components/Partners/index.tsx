@@ -77,7 +77,7 @@ const RecentRewards = (props: Props) => {
       name: '0x7feathers',
       tips: 'Technical Marketing Lead',
       desc: 'Reimagining the Open Web',
-      link: 'https://x.com/chrestomanzi',
+      link: 'https://x.com/0x7feathers',
       icon: '/images/intro/partner/p4.png'
     },
     {
