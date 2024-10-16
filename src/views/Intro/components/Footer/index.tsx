@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { StyledFlex, StyledFont } from "@/styled/styles";
 import { openAppLink } from "@/utils/links";
+
 import { type NavigationType } from "../../types";
 const StyledFooterContainer = styled.div`
   padding: 0 20px 30px;
@@ -96,8 +97,8 @@ const PRODUCT_LIST: NavigationType[] = [{
   path: "/alldapps",
   target: "_blank"
 }, {
-  label: "Odyssey",
-  path: "/odyssey",
+  label: "Campaigns",
+  path: "/canpains",
   target: "_blank"
 }, {
   label: "Portfolio",

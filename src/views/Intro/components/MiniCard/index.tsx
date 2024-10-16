@@ -1,7 +1,8 @@
+import { useSize } from "ahooks";
 import { useRouter } from "next/router";
 import { memo, useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
-import { useSize } from "ahooks";
+
 import { StyledContainer, StyledFlex, StyledFont, StyledSvg } from "@/styled/styles";
 import { openAppLink } from "@/utils/links";
 
@@ -648,7 +649,7 @@ export default memo(function MiniCard() {
           style={{ display: "flex", flex: 2, backgroundColor: "#EBF479", padding: 20 }}
           className="odyssey"
           onClick={() => {
-            openAppLink("/odyssey")
+            openAppLink("/campaigns")
           }}
         >
           <StyledRightSvg style={{ right: 10, top: 10 }}>
@@ -680,7 +681,7 @@ export default memo(function MiniCard() {
           className="rewards"
           style={{ backgroundColor: "#5B56F3" }}
           onClick={() => {
-            openAppLink("/odyssey")
+            openAppLink("/campaigns")
           }}
         >
           <StyledMiniCardImage src="/images/intro/rewards-bg.png" style={{ position: 'absolute', width: 405, right: 0, top: 0 }} />
