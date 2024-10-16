@@ -97,7 +97,7 @@ const PRODUCT_LIST: NavigationType[] = [{
   path: "/alldapps",
   target: "_blank"
 }, {
-  label: "Campaigns",
+  label: "Campaign",
   path: "/canpains",
   target: "_blank"
 }, {
