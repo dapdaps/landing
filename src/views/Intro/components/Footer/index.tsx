@@ -98,7 +98,7 @@ const PRODUCT_LIST: NavigationType[] = [{
   target: "_blank"
 }, {
   label: "Campaign",
-  path: "/canpains",
+  path: "/campaigns",
   target: "_blank"
 }, {
   label: "Portfolio",
