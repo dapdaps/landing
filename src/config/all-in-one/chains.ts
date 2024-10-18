@@ -51,6 +51,7 @@ export const PathToId: { [key: string]: number } = {
   scroll: 17,
   blast: 18,
   mode: 19,
+  'bera-b': 21,
 };
 
 export const IdToPath: { [key: string]: string } = {
@@ -70,6 +71,7 @@ export const IdToPath: { [key: string]: string } = {
   17: 'scroll',
   18: 'blast',
   19: 'mode',
+  21: 'bera-b',
 };
 
 export default popupsData;
