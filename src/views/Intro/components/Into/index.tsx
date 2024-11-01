@@ -11,7 +11,7 @@ import { openAppLink } from "@/utils/links";
 const StyledInto = styled.div`
   position: relative;
   margin-top: -148px;
-  height: 590px;
+  height: 690px;
   background: #EBF479 url("/images/intro/into-bg.svg") no-repeat center;
   background-size: cover;
   z-index: 10;
@@ -48,6 +48,22 @@ const StyledDapps = styled.div`
   display: flex;
   gap: 17px;
 `
+
+const JoinButton = styled.div`
+  height: 60px;
+  color: #fff;
+  background-color: #5B56F3;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  width: 290px;
+  margin: 58px auto 40px;
+  cursor: pointer;
+`
+
 export default memo(function Into() {
   const { stats } = useStats()
   const router = useRouter()
@@ -105,6 +121,10 @@ export default memo(function Into() {
           </StyledSvg>
         </StyledDapps>
       </StyledNetworksAndDapps>
+
+      <JoinButton onClick={() => {
+        window.open('https://form.typeform.com/to/rr83U4dM')
+      }}>Project request to join</JoinButton>
     </StyledInto>
   )
 })
