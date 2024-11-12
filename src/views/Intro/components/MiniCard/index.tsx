@@ -30,6 +30,13 @@ const StyledMiniCard = styled.div`
         /* flex-direction: column; */
       }
     }
+    
+    &.odyssey {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 1280px) {
     .allInOneText {
       /* position: static; */
       right: auto;
@@ -37,12 +44,9 @@ const StyledMiniCard = styled.div`
       width: 80%;
       bottom: 20px;
       div {
-        color: #000;
+        /* color: #000; */
       }
       
-    }
-    &.odyssey {
-      flex-direction: column;
     }
   }
 `
@@ -429,7 +433,7 @@ export default memo(function MiniCard() {
     <StyledMiniCardContainer className={screenType} ref={miniCardContainerRef}>
       <StyledFlex gap="20px" flexDirection={screenType === "sm" ? "column" : "row"} style={{ marginBottom: 20 }}>
         <StyledMiniCard
-          style={{ backgroundColor: "#5B56F3", height: screenType === "sm" ? 514 : 614, }}
+          style={{ backgroundColor: "#5B56F3", height: screenType === "sm" ? 814 : 614, }}
           className="allinone"
           onClick={() => {
             const path = TILT_CHAINS[currentIndex % TILT_CHAINS.length]?.path

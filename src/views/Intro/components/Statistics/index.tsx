@@ -39,7 +39,7 @@ const Amount = styled.div`
     font-weight: 700;
     margin-top: 5px;
     @media (max-width: 800px) {
-      font-size: 36px;
+      font-size: 26px;
     }
 
 `
