@@ -99,6 +99,10 @@ const StyledTagChain = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 800px) {
+    width: 70px;
+    height: 70px;
+  }
 
   img {
     width: 100%;

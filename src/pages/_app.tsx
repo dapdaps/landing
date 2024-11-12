@@ -42,15 +42,22 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     NProgress.done();
   };
 
+  const gesturestartFn = function(event: any) {
+    event.preventDefault();
+}
+
   useEffect(() => {
     router.events.on('routeChangeStart', handleRouteChangeStart);
     router.events.on('routeChangeComplete', handleRouteChangeComplete);
     router.events.on('routeChangeError', handleRouteChangeError);
 
+    document.addEventListener('gesturestart', gesturestartFn);
+
     return () => {
       router.events.off('routeChangeStart', handleRouteChangeStart);
       router.events.off('routeChangeComplete', handleRouteChangeComplete);
       router.events.off('routeChangeError', handleRouteChangeError);
+      document.removeEventListener('gesturestart', gesturestartFn);
     };
   }, [router.events]);
 

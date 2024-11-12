@@ -115,7 +115,7 @@ export default memo(function Banner() {
         </StyledSuperButton>
         <StyledSuperButton style={{ width: 145 }} onClick={() => openAppLink("/super-swap")}>
           <SwapSvg />
-          <StyledFont color="#FFF" fontWeight="600" lineHeight="100%">SuperSwap</StyledFont>
+          <StyledFont color="#FFF" fontWeight="600" lineHeight="100%">Super Swap</StyledFont>
         </StyledSuperButton>
       </StyledFlex>
       <StyledMainHeading>

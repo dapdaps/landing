@@ -153,6 +153,7 @@ html {
   font: var(--text-base);
   font-family: Gantari;
   background-color: rgb(24, 25, 33);
+  touch-action: manipulation;
 }
 
 a {
