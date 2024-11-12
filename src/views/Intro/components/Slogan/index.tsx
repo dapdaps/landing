@@ -7,6 +7,10 @@ const Wrapper = styled.div`
     font-weight: 600;
     line-height: 192px;
     overflow: hidden;
+    @media (max-width: 800px) {
+      font-size: 80px;
+      line-height: 120px;
+    }
 `
 
 const Track = styled.div`

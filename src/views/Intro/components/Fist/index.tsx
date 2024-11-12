@@ -7,7 +7,9 @@ const StyledFistContainer = styled.div`
   margin: 80px auto 0;
   width: 292px;
   height: 210px;
-
+  @media (max-width: 800px) {
+    margin-top: 20px;
+  }
 `
 const StyledFistDynamicImage = styled.img`
   width: 100%;

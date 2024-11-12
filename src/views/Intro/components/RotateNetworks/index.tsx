@@ -28,7 +28,7 @@ const StyledRotateNetworks = styled.div`
     }
   }
 
-  
+ 
 `
 const StyledRotateNetwork = styled.div`
   position: absolute;
@@ -48,7 +48,11 @@ const StyledRotateNetworksContainer = styled.div`
   height: 479px;
   overflow: hidden;
   @media screen and (min-width: 768px) and (max-width: 1280px) {
-    min-width: 768px;
+    /* min-width: 768px; */
+  }
+
+  @media (max-width: 1280px) {
+    min-width: auto;
   }
 `
 const StyledRotateNetworkImage = styled.img`

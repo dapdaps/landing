@@ -1,10 +1,11 @@
 import { useRouter } from "next/router"
-import { memo } from "react"
+import { memo, useEffect, useState } from "react"
 import styled from "styled-components"
 
 import { StyledFont, StyledSvg } from "@/styled/styles"
 
 import type { NavigationType } from "../../types"
+import { useSetState } from "ahooks"
 const StyledHeader = styled.div`
   position: relative;
   display: flex;
@@ -22,6 +23,19 @@ const StyledLogo = styled.img`
 const StyledMenuList = styled.div`
   display: flex;
   gap: 68px;
+  @media (max-width: 800px) {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 60vw;
+    background-color: #0F1921;
+    display: block;
+    padding-left: 20px;
+    &.menu-mobile {
+      display: none;
+    }
+  }
 `
 const StyledMenuPopUp = styled.div`
   display: none;
@@ -39,6 +53,15 @@ const StyledMenuContainer = styled.div`
     }
   }
 `
+
+const StyledMenuIcon = styled.div`
+  display: none;
+  @media (max-width: 800px) {
+    display: block;
+    cursor: pointer;
+  }
+`
+
 const StyledMenu = styled.div`
   color: #FFF;
   font-family: Montserrat;
@@ -49,6 +72,10 @@ const StyledMenu = styled.div`
   cursor: pointer;
   &:hover {
     font-weight: 700;
+  }
+  @media (max-width: 800px) {
+    line-height: 300%;
+    border-bottom: 1px solid #25313E;
   }
 `
 
@@ -121,6 +148,22 @@ const COMMUNITY_LIST: NavigationType[] = [{
 const logoUrl = 'https://assets.dapdap.net/images/logo.png';
 export default memo(function Header() {
   const router = useRouter()
+  const [menuShow, setMenuShow] = useState(false)
+
+  const docClick = (e: any) => {
+    if (!e.target.classList.contains('flag') && !e.parentNode?.target.classList.contains('flag')) {
+      setMenuShow(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('click', docClick, false)
+
+    return () => {
+      document.removeEventListener('click', docClick)
+    }
+  }, [])
+
   return (
     <StyledHeader>
       <StyledLogo
@@ -129,7 +172,22 @@ export default memo(function Header() {
           router.push("/")
         }}
       />
-      <StyledMenuList>
+
+      <StyledMenuIcon className="flag" onClick={(e) => {
+        e.nativeEvent.stopImmediatePropagation()
+        setMenuShow(true)
+      }}>
+        <svg className="" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="16" height="2" rx="1" fill="#7E8A93" />
+          <rect y="7" width="16" height="2" rx="1" fill="#7E8A93" />
+          <rect y="14" width="16" height="2" rx="1" fill="#7E8A93" />
+        </svg>
+      </StyledMenuIcon>
+
+
+      <StyledMenuList onClick={(e) => {
+        e.nativeEvent.stopImmediatePropagation()
+      }} className={menuShow ? "flag" : "flag menu-mobile"}>
         {
           MENU_LIST.map((menu: NavigationType) => {
             return menu?.label === "Community" ? (

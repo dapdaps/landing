@@ -53,7 +53,11 @@ const StyledExporeButton = styled.div`
     transform: scale(110%);
   }
 `
-const StyledImage = styled.img``
+const StyledImage = styled.img`
+  @media (max-width: 800px) {
+    display: none;
+  }
+`
 
 const StyledMainHeading = styled.div`
   position: relative;
@@ -95,13 +99,16 @@ const StyledMainHeading = styled.div`
 const StyledMainTips = styled.div`
   width: 736px;
   margin: 0 auto 30px;
+  @media (max-width: 800px) {
+    width: 85%;
+  }
 `
 export default memo(function Banner() {
   const router = useRouter()
   return (
     <StyledBanner>
       <StyledFlex justifyContent="center" gap="10px">
-        <StyledFont color="#FFF" fontSize="18px" lineHeight="150%">Quick start your Web3 journey with</StyledFont>
+        <StyledFont className="mini-title" color="#FFF" fontSize="18px" lineHeight="150%">Quick start your Web3 journey with</StyledFont>
         <StyledSuperButton style={{ width: 152 }} onClick={() => openAppLink("/super-bridge")}>
           <BridgeSvg />
           <StyledFont color="#FFF" fontWeight="600" lineHeight="100%">Super Bridge</StyledFont>

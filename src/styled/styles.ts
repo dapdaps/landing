@@ -13,6 +13,12 @@ export const StyledFont = styled.div<FontProps>`
   line-height: ${(props) => props.lineHeight || 'normal'};
   white-space: ${(props) => props.whiteSpace || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
+  @media (max-width: 800px) {
+    &.mini-title {
+      width: 100%;
+      text-align: center;
+    }
+  }
   &.ellipsis {
     display: -webkit-box;
     -webkit-line-clamp: ${(props) => props.lineClamp || 1};
@@ -28,6 +34,9 @@ export const StyledFlex = styled.div<FlexProps>`
   justify-content: ${(props) => props.justifyContent || 'flex-start'};
   gap: ${(props) => props.gap || '0px'};
   flex-wrap: ${(props) => props.flexWrap || 'nowrap'};
+  @media (max-width: 800px) {
+    flex-wrap: wrap; 
+  }
 `;
 export const StyledSvg = styled.div`
   display: flex;
