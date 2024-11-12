@@ -135,6 +135,9 @@ const StyledAllInOneBg = styled.div`
   width: 415px;
   height: 505px;
   transform-origin: 0% 0%;
+  @media (max-width: 800px) {
+    transform: scale(0.7);
+  }
 `
 const StyledTiltChainsContainer = styled.div`
   position: absolute;
@@ -433,7 +436,7 @@ export default memo(function MiniCard() {
     <StyledMiniCardContainer className={screenType} ref={miniCardContainerRef}>
       <StyledFlex gap="20px" flexDirection={screenType === "sm" ? "column" : "row"} style={{ marginBottom: 20 }}>
         <StyledMiniCard
-          style={{ backgroundColor: "#5B56F3", height: screenType === "sm" ? 814 : 614, }}
+          style={{ backgroundColor: "#5B56F3", height: screenType === "sm" ? 680 : 614, }}
           className="allinone"
           onClick={() => {
             const path = TILT_CHAINS[currentIndex % TILT_CHAINS.length]?.path
@@ -635,7 +638,7 @@ export default memo(function MiniCard() {
                 <StyledRightSvg style={{ right: 10, top: 10 }}>
                   {BlackRightSvg}
                 </StyledRightSvg>
-                <StyledSvg style={{ position: 'absolute', right: 73, top: -46 }}>
+                <StyledSvg style={{ position: 'absolute', right: 30, top: 10, transform: 'scale(0.6)' }}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="125" height="148" viewBox="0 0 125 148" fill="none">
                     <path d="M123.912 103.516C122.782 84.6775 107.283 81.5349 99.4339 84.3607L60.8156 125.806C60.3446 132.243 63.3588 145.493 79.1833 147C98.964 148.884 125.325 127.065 123.912 103.516Z" fill="white" stroke="black" />
                     <path d="M75.884 128.633C69.2714 129.883 48.5381 131.433 34.4388 120.626C28.0757 115.749 20.1899 105.299 13.4525 99.2961C6.71505 93.2936 16.4484 85.7905 23.9344 88.0415C31.4204 90.2924 38.1578 97.7955 46.0166 99.2961C53.8754 100.797 66.259 95.8717 63.6389 78.6146C61.2631 62.967 47.4425 61.462 39.6535 65.4842C27.3031 71.8618 14.5298 87.6899 3.73462 78.6146C-7.86795 68.8606 19.8454 50.8531 41.9157 38.8482C49.4017 34.7762 66.6046 43.2383 66.6046 43.2383C61.9881 32.271 55.3003 8.61057 65.4813 1.70771C70.3748 -1.61014 75.1015 7.13069 79.0751 19.7153C80.4079 13.9629 84.9449 2.68322 92.4309 3.58359C96.9499 4.12711 97.0198 13.8853 96.3654 28.7872C97.3878 29.2581 99.9035 31.9297 101.787 38.8482C103.671 45.7666 98.1766 58.258 95.1938 63.6388C98.9368 67.3904 101.787 81.8717 101.787 94.2518C101.787 116.889 89.0913 124.881 75.884 128.633Z" fill="#EBF479" />
