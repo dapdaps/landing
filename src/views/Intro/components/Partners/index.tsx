@@ -11,6 +11,9 @@ const StyledRecentRewards = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 150px;
+  @media (max-width: 800px) {
+    padding-top: 80px;
+  }
 
   .title {
     font-size: 46px;
@@ -18,6 +21,10 @@ const StyledRecentRewards = styled.div`
     font-family: Montserrat;
     color: #fff;
     margin-bottom: 35px;
+    @media (max-width: 800px) {
+      font-size: 36px;
+      padding: 0 20px;
+    }
 
     span {
       color: #ebf479;

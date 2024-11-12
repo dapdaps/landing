@@ -17,6 +17,38 @@ const StyledMiniCard = styled.div`
   &:hover {
     transform: scale(102%);
   }
+  .allInOneText {
+    position: absolute;
+    width: calc(100% - 455px);
+    right: 33px;
+  }
+  @media (max-width: 800px) {
+    &.portfolioCard {
+      height: auto;
+      padding-bottom: 30px;
+      .portfolioCardBtns {
+        /* flex-direction: column; */
+      }
+    }
+    
+    &.odyssey {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .allInOneText {
+      /* position: static; */
+      right: auto;
+      left: 5%;
+      width: 80%;
+      bottom: 20px;
+      div {
+        /* color: #000; */
+      }
+      
+    }
+  }
 `
 const StyledMiniCardContainer = styled.div`
   width: 100%;
@@ -195,6 +227,9 @@ const StyledPortfolioButton = styled.div`
   padding: 0 25px;
   border-radius: 12px;
   background: #5B56F3;
+  @media (max-width: 800px) {
+    flex: 1;
+  }
 
 `
 const StyledEyesImage = styled.img`
@@ -214,6 +249,11 @@ const StyledOdysseyVideoContainer = styled.div`
   background-color: #ecec84;
   overflow: hidden;
   background-blend-mode: luminosity;
+  @media (max-width: 800px) {
+    width: auto;
+    margin-top: 60px;
+    
+  }
 `
 const StyledOdysseyVideo = styled.video`
   width: 100%;
@@ -336,6 +376,7 @@ export default memo(function MiniCard() {
     }
   }, [size])
 
+  console.log('screenType:', screenType)
 
   const handleMouseEnterAnimateRunning = function (card: any, svg: any) {
     card?.addEventListener("mouseenter", function () {
@@ -392,7 +433,7 @@ export default memo(function MiniCard() {
     <StyledMiniCardContainer className={screenType} ref={miniCardContainerRef}>
       <StyledFlex gap="20px" flexDirection={screenType === "sm" ? "column" : "row"} style={{ marginBottom: 20 }}>
         <StyledMiniCard
-          style={{ backgroundColor: "#5B56F3", height: screenType === "sm" ? 514 : 614, }}
+          style={{ backgroundColor: "#5B56F3", height: screenType === "sm" ? 814 : 614, }}
           className="allinone"
           onClick={() => {
             const path = TILT_CHAINS[currentIndex % TILT_CHAINS.length]?.path
@@ -425,14 +466,14 @@ export default memo(function MiniCard() {
               }
             </StyledRockerContainer>
           </StyledAllInOneBg>
-          <StyledContainer style={{ position: 'absolute', width: "calc(100% - 455px)", right: 33, bottom: screenType === "sm" ? 85 : 65 }}>
-            <StyledFont color="#FFF" fontSize="56px" fontWeight="700" lineHeight="100%">All-In-One</StyledFont>
+          <StyledContainer className="allInOneText" style={{ bottom: screenType === "sm" ? 25 : 65 }}>
+            <StyledFont color="#FFF" fontSize="56px" fontWeight="700" whiteSpace="noWrap" lineHeight="100%">All-In-One</StyledFont>
             <StyledFont color="#FFF" fontSize="32px" fontWeight="700" lineHeight="100%" style={{ marginTop: 13, marginBottom: 27 }}>for 15+ L2s</StyledFont>
             <StyledFont color="#FFF" fontSize="18px" fontWeight="500" lineHeight="150%">Seamlessly trade, lend, and manage liquidity across multiple networks within a completely unified interface, making your Web3 experience smooth and uninterrupted.</StyledFont>
           </StyledContainer>
         </StyledMiniCard>
         <StyledFlex flexDirection="column" alignItems="flex-start" gap="20px" style={{ flex: 1, width: screenType === "sm" ? "100%" : "auto" }}>
-          <StyledFlex flexDirection={screenType === "md" ? "column" : "row"} alignItems="flex-start" gap="20px" style={{ width: "100%", height: screenType === "md" ? 614 : "auto" }}>
+          <StyledFlex flexDirection={(screenType === "md" || screenType === "sm" ) ? "column" : "row"} alignItems="flex-start" gap="20px" style={{ width: "100%", height: screenType === "md" ? 614 : "auto" }}>
             <StyledMiniCard
               className="SuperBridgeMiniCard"
               style={{ backgroundColor: "#F2F2F2" }}
@@ -459,7 +500,7 @@ export default memo(function MiniCard() {
               <StyledRightSvg style={{ right: 10, bottom: 10 }}>
                 {BlackRightSvg}
               </StyledRightSvg>
-              <StyledContainer style={{ paddingTop: 67 }}>
+              <StyledContainer style={{ paddingTop: (screenType === 'sm' ? 40 : 67 ), paddingBottom: (screenType === 'sm' ? 30 : 0 ) }}>
                 <StyledFlex gap="6px" style={{ paddingLeft: 24, marginBottom: 14 }}>
                   <StyledSvg>
                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="40" viewBox="0 0 27 40" fill="none">
@@ -499,7 +540,7 @@ export default memo(function MiniCard() {
               <StyledRightSvg style={{ right: 10, bottom: 10 }}>
                 {WhiteRightSvg}
               </StyledRightSvg>
-              <StyledContainer style={{ paddingTop: 67 }}>
+              <StyledContainer style={{ paddingTop: (screenType === 'sm' ? 40 : 67 ), paddingBottom: (screenType === 'sm' ? 30 : 0 ) }}>
                 <StyledFlex gap="6px" style={{ paddingLeft: 24, marginBottom: 14 }}>
                   <StyledSvg>
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="24" viewBox="0 0 28 24" fill="none">
@@ -584,6 +625,7 @@ export default memo(function MiniCard() {
         screenType !== "lg" && (
           <StyledContainer style={{ width: "100%" }}>
             <StyledMiniCard
+              className="portfolioCard"
               style={{ background: `#EBF479 url(/images/intro/portfolio-bg.svg) no-repeat center`, backgroundSize: '100%', marginBottom: 20 }}
               onClick={() => {
                 openAppLink("https://app.dapdap.net/portfolio")
@@ -602,8 +644,8 @@ export default memo(function MiniCard() {
                   <StyledEyesImage src="/images/intro/eyes.gif" />
                 </StyledSvg>
                 <StyledFont color="#000" fontSize="36px" fontWeight="700">Portfolio Analytics</StyledFont>
-                <StyledFont color="#000" fontSize="18px" fontWeight="500" lineHeight="150%" style={{ marginTop: 31, marginBottom: 22 }}>Effortlessly view and manage your assets across networks. Track your bridging, swapping, liquidity, and lending activities in real-time with our comprehensive data support.</StyledFont>
-                <StyledFlex gap="10px">
+                <StyledFont color="#000" fontSize="18px" fontWeight="500" lineHeight="150%" style={{ marginTop: (screenType === 'sm' ? 10: 31 ) , marginBottom: 22 }}>Effortlessly view and manage your assets across networks. Track your bridging, swapping, liquidity, and lending activities in real-time with our comprehensive data support.</StyledFont>
+                <StyledFlex className="portfolioCardBtns" gap="10px">
                   <StyledPortfolioButton>
                     <StyledSvg>
                       <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
@@ -646,7 +688,7 @@ export default memo(function MiniCard() {
       }
       <StyledFlex flexDirection={screenType === "sm" ? "column" : "row"} gap="20px">
         <StyledMiniCard
-          style={{ display: "flex", flex: 2, backgroundColor: "#EBF479", padding: 20 }}
+          style={{ display: "flex", flex: 2, backgroundColor: "#EBF479", padding: 20}}
           className="odyssey"
           onClick={() => {
             openAppLink("/campaigns")

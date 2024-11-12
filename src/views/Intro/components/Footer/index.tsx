@@ -17,6 +17,10 @@ const StyledFooter = styled.div`
   border-radius: 30px;
   background: #EBF479 url('/images/intro/footer-bg.svg') no-repeat center;
   background-size: cover;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    height: auto;
+  }
 `
 const StyledCopyright = styled.div`
   position: absolute;
@@ -46,11 +50,21 @@ const StyledFooterR = styled.div`
   @media (max-width: 1280px) {
     padding-right: 0;
     overflow: hidden;
+    padding-bottom: 20px;
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 40px;
   }
 `
 const StyledLogoImage = styled.img`
   margin-bottom: 107px;
   width: 242px;
+  @media (max-width: 800px) {
+    margin-bottom: 10px;
+  }
 `
 const StyledSocialButton = styled.div`
   display: flex;

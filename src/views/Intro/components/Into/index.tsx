@@ -33,20 +33,31 @@ const StyledIntoTitle = styled.div`
   font-style: normal;
   font-weight: 800;
   line-height: 120%; /* 96px */
+  @media (max-width: 800px) {
+    font-size: 50px;
+    width: auto;
+  }
 `
 const StyledNetworksAndDapps = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 293px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 40px;
+  }
 `
 const StyledNetworks = styled.div`
   display: flex;
   gap: 17px;
+  
+
 `
 const StyledDapps = styled.div`
   display: flex;
   gap: 17px;
+  
 `
 
 const JoinButton = styled.div`

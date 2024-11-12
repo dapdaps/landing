@@ -27,6 +27,10 @@ const ItemTitle = styled.div`
     font-weight: 400;
     /* border-bottom: 1px dotted #000; */
     /* display: inline-block; */
+    @media (max-width: 800px) {
+      font-size: 16px;
+    }
+
 `
 
 const Amount = styled.div`
@@ -34,6 +38,9 @@ const Amount = styled.div`
     font-size: 42px;
     font-weight: 700;
     margin-top: 5px;
+    @media (max-width: 800px) {
+      font-size: 26px;
+    }
 
 `
 
