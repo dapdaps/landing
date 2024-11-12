@@ -467,7 +467,7 @@ export default memo(function MiniCard() {
             </StyledRockerContainer>
           </StyledAllInOneBg>
           <StyledContainer className="allInOneText" style={{ bottom: screenType === "sm" ? 25 : 65 }}>
-            <StyledFont color="#FFF" fontSize="56px" fontWeight="700" lineHeight="100%">All-In-One</StyledFont>
+            <StyledFont color="#FFF" fontSize="56px" fontWeight="700" whiteSpace="noWrap" lineHeight="100%">All-In-One</StyledFont>
             <StyledFont color="#FFF" fontSize="32px" fontWeight="700" lineHeight="100%" style={{ marginTop: 13, marginBottom: 27 }}>for 15+ L2s</StyledFont>
             <StyledFont color="#FFF" fontSize="18px" fontWeight="500" lineHeight="150%">Seamlessly trade, lend, and manage liquidity across multiple networks within a completely unified interface, making your Web3 experience smooth and uninterrupted.</StyledFont>
           </StyledContainer>
