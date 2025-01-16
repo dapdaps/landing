@@ -198,7 +198,7 @@ export default memo(function Footer() {
               ))
             }
           </StyledFlex>
-          <StyledFlex flexDirection="column" alignItems="fle-start" gap="14px">
+          <StyledFlex flexDirection="column" alignItems="fle-start" gap="14px" style={{ width: "22.35em", }}>
             <StyledFont fontSize="18px" fontWeight="700">PRODUCT</StyledFont>
             <StyledFlex flexDirection="column" flexWrap="wrap" alignItems="flex-start" gap="14px 50px" style={{ height: 120 }}>
               {
