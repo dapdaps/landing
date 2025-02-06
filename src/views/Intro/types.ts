@@ -2,7 +2,8 @@ export type NavigationType = {
   path: string;
   label: string;
   icon?: JSX.Element;
-  target?: "_self" | "_blank"
+  target?: "_self" | "_blank";
+  dropdown?: NavigationType[];
 }
 export type StatsType = {
   total_users: number;
