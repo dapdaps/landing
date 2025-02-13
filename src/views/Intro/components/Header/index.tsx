@@ -6,6 +6,7 @@ import { StyledFont, StyledSvg } from "@/styled/styles"
 
 import type { NavigationType } from "../../types"
 import { useSetState } from "ahooks"
+
 const StyledHeader = styled.div`
   position: relative;
   display: flex;
@@ -70,6 +71,7 @@ const StyledMenu = styled.div`
   font-weight: 400;
   line-height: 150%; /* 27px */
   cursor: pointer;
+  transition: all 0.1s linear;
   &:hover {
     font-weight: 700;
   }
@@ -80,9 +82,8 @@ const StyledMenu = styled.div`
 `
 
 const StyledMenuPopUpBody = styled.div`
-  padding: 6px 7px;
+  padding: 8px 7px;
   width: 206px;
-  height: 198px;
   border-radius: 20px;
   background: #F2F2F2;
   box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 0.25);
@@ -104,22 +105,6 @@ const StyledCommunity = styled.div`
   }
 `
 
-const MENU_LIST: NavigationType[] = [{
-  path: "https://app.dapdap.net/",
-  label: "Product",
-  target: "_blank"
-}, {
-  path: "",
-  label: "Community",
-}, {
-  path: "https://dapdap.mirror.xyz/",
-  label: "Blog",
-  target: "_blank"
-}, {
-  path: "https://docs.dapdap.net/",
-  label: "Documentation",
-  target: "_blank"
-}]
 const COMMUNITY_LIST: NavigationType[] = [{
   label: "X / Twitter",
   path: "https://twitter.com/DapDapMeUp",
@@ -144,7 +129,72 @@ const COMMUNITY_LIST: NavigationType[] = [{
       <path d="M8.71985 17.8505L9.07994 12.5365L18.9566 3.84302C19.3939 3.45357 18.8666 3.26513 18.2879 3.60433L6.09636 11.1294L0.823662 9.49627C-0.30804 9.1822 -0.3209 8.41587 1.08087 7.86311L21.6187 0.124434C22.5575 -0.290138 23.4577 0.350564 23.0976 1.7576L19.5996 17.8505C19.3553 18.9937 18.648 19.2701 17.6706 18.7425L12.3464 14.8983L9.78725 17.3229C9.49146 17.6118 9.24712 17.8505 8.71985 17.8505Z" fill="black" />
     </svg>
   )
-},]
+},];
+
+const PRODUCTS_LIST: NavigationType[] = [
+  {
+    label: "DapDap",
+    path: "https://app.dapdap.net/",
+    target: "_blank",
+    icon: (
+      <svg width="31" height="33" viewBox="0 0 31 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M1.91839 15.6483C1.39153 13.3488 3.87506 7.45045 3.87506 7.45045L17.178 6.56635C19.7509 5.87693 22.3955 7.40382 23.0849 9.97673L28.7103 19.2472C27.806 23.7688 27.0567 26.3322 24.4837 27.0216L11.0003 30.9079C8.42742 31.5973 5.78278 30.0704 5.09337 27.4975L1.91839 15.6483Z"
+          fill="#EBF479"
+        />
+        <path
+          d="M3.5883 10.6389C2.8783 7.98911 4.45079 5.2655 7.10054 4.5555L19.3036 1.28569C21.9534 0.57569 24.677 2.14817 25.387 4.79793L28.6568 17.001C29.3668 19.6508 27.7943 22.3744 25.1446 23.0844L12.9415 26.3542C10.2917 27.0642 7.56811 25.4917 6.85811 22.842L3.5883 10.6389Z"
+          fill="black"
+        />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M19.625 2.48514L7.42193 5.75495C5.43462 6.28745 4.25525 8.33016 4.78775 10.3175L8.05756 22.5206C8.59006 24.5079 10.6328 25.6872 12.6201 25.1547L24.8232 21.8849C26.8105 21.3524 27.9899 19.3097 27.4574 17.3224L24.1875 5.11932C23.655 3.132 21.6123 1.95264 19.625 2.48514ZM7.10054 4.5555C4.45079 5.2655 2.8783 7.98911 3.5883 10.6389L6.85811 22.842C7.56811 25.4917 10.2917 27.0642 12.9415 26.3542L25.1446 23.0844C27.7943 22.3744 29.3668 19.6508 28.6568 17.001L25.387 4.79793C24.677 2.14817 21.9534 0.57569 19.3036 1.28569L7.10054 4.5555Z"
+          fill="#EBF479"
+        />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M15.0454 7.9507L11.7892 8.82321C11.2557 8.96615 10.9391 9.51449 11.0821 10.048L11.4412 11.3883C11.5841 11.9217 12.1325 12.2383 12.6659 12.0954L15.6242 11.3027C16.7112 11.0114 17.8286 11.6565 18.1199 12.7436C18.4112 13.8307 17.7661 14.948 16.679 15.2393L13.7208 16.032C13.1873 16.1749 12.8707 16.7233 13.0136 17.2567L13.3879 18.6533C13.5308 19.1868 14.0791 19.5034 14.6126 19.3604L17.8689 18.4879C20.7786 17.7083 22.5054 14.7174 21.7258 11.8076C20.9461 8.89782 17.9552 7.17103 15.0454 7.9507Z"
+          fill="#EBF479"
+        />
+      </svg>
+    )
+  },
+  {
+    label: 'BeraTown',
+    path: 'https://beratown.dapdap.net/',
+    target: '_blank',
+    icon: (
+      <img src="/images/beratown-logo.png" alt="" width={31} />
+    )
+  }
+];
+
+const MENU_LIST: NavigationType[] = [
+  {
+    path: '',
+    label: 'Products',
+    target: '_blank',
+    dropdown: PRODUCTS_LIST,
+  },
+  {
+    path: '',
+    label: 'Community',
+    dropdown: COMMUNITY_LIST,
+  },
+  {
+    path: 'https://dapdap.mirror.xyz/',
+    label: 'Blog',
+    target: '_blank',
+  },
+  {
+    path: 'https://docs.dapdap.net/',
+    label: 'Documentation',
+    target: '_blank'
+  }
+];
+
 const logoUrl = 'https://assets.dapdap.net/images/logo.png';
 export default memo(function Header() {
   const router = useRouter()
@@ -173,10 +223,12 @@ export default memo(function Header() {
         }}
       />
 
-      <StyledMenuIcon className="flag" onClick={(e) => {
+      <StyledMenuIcon
+        className="flag" onClick={(e) => {
         e.nativeEvent.stopImmediatePropagation()
         setMenuShow(true)
-      }}>
+      }}
+      >
         <svg className="" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="16" height="2" rx="1" fill="#7E8A93" />
           <rect y="7" width="16" height="2" rx="1" fill="#7E8A93" />
@@ -185,38 +237,50 @@ export default memo(function Header() {
       </StyledMenuIcon>
 
 
-      <StyledMenuList onClick={(e) => {
-        e.nativeEvent.stopImmediatePropagation()
-      }} className={menuShow ? "flag" : "flag menu-mobile"}>
+      <StyledMenuList
+        onClick={(e) => {
+          e.nativeEvent.stopImmediatePropagation()
+        }} className={menuShow ? "flag" : "flag menu-mobile"}
+      >
         {
           MENU_LIST.map((menu: NavigationType) => {
-            return menu?.label === "Community" ? (
+            return (
               <StyledMenuContainer key={menu.label}>
-                <StyledMenu key={menu.label}>{menu.label}</StyledMenu>
-                <StyledMenuPopUp>
-                  <StyledMenuPopUpBody>
-                    {
-                      COMMUNITY_LIST.map(community => (
-                        <StyledCommunity
-                          key={community.label}
-                          onClick={() => {
-                            community?.path && window.open(community?.path, '_blank')
-                          }}
-                        >
-                          <StyledSvg>
-                            {community?.icon}
-                          </StyledSvg>
-                          <StyledFont fontSize="18px" fontWeight="500" lineHeight="150%">{community?.label}</StyledFont>
-                        </StyledCommunity>
-                      ))
-                    }
-                  </StyledMenuPopUpBody>
-                </StyledMenuPopUp>
+                <StyledMenu
+                  key={menu.label}
+                  onClick={() => {
+                    if (!!menu.dropdown) return;
+                    menu?.path && window.open(menu?.path, menu?.target);
+                  }}
+                >
+                  {menu.label}
+                </StyledMenu>
+                {
+                  !!menu.dropdown && (
+                    <StyledMenuPopUp>
+                      <StyledMenuPopUpBody>
+                        {
+                          menu.dropdown.map(community => (
+                            <StyledCommunity
+                              key={community.label}
+                              onClick={() => {
+                                community?.path && window.open(community?.path, menu?.target || '_blank')
+                              }}
+                            >
+                              <StyledSvg>
+                                {community?.icon}
+                              </StyledSvg>
+                              <StyledFont fontSize="18px" fontWeight="500" lineHeight="150%">
+                                {community?.label}
+                              </StyledFont>
+                            </StyledCommunity>
+                          ))
+                        }
+                      </StyledMenuPopUpBody>
+                    </StyledMenuPopUp>
+                  )
+                }
               </StyledMenuContainer>
-            ) : (
-              <StyledMenu key={menu.label} onClick={() => {
-                menu?.path && window.open(menu?.path, menu?.target)
-              }}>{menu.label}</StyledMenu>
             )
           })
         }
