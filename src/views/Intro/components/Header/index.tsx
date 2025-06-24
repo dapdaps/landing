@@ -174,7 +174,7 @@ const PRODUCTS_LIST: NavigationType[] = [
     path: 'https://www.nadsa.space/',
     target: '_blank',
     icon: (
-      <img src="/images/nadsa-logo.png" alt="" width={31} className="w-[31px] h-[33px] object-center object-contain" />
+      <img src="/images/nadsa-logo.png" alt="" width={31} className="w-[31px] h-[31px] object-center object-contain" />
     )
   }
 ];
