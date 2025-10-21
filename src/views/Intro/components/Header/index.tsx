@@ -176,6 +176,14 @@ const PRODUCTS_LIST: NavigationType[] = [
     icon: (
       <img src="/images/nadsa-logo.png" alt="" width={31} className="w-[31px] h-[31px] object-center object-contain" />
     )
+  },
+  {
+    label: 'Coinback',
+    path: 'https://app.coinback.fun/',
+    target: '_blank',
+    icon: (
+      <img src="/images/coinback-logo.svg" alt="" width={31} className="w-[31px] h-[31px] object-center object-contain" />
+    )
   }
 ];
 
